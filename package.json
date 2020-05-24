@@ -1,0 +1,41 @@
+{
+  "name": "love-letter-node",
+  "version": "1.0.0",
+  "description": "call of duty",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liars2/love-letter-node.git"
+  },
+  "keywords": [
+    "thecamp"
+  ],
+  "author": "juwon jung",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liars2/love-letter-node/issues"
+  },
+  "homepage": "https://github.com/liars2/love-letter-node#readme",
+  "dependencies": {
+    "@koa/cors": "^3.1.0",
+    "@types/koa": "^2.11.3",
+    "@types/koa-router": "^7.4.1",
+    "@types/koa__cors": "^3.0.1",
+    "axios": "^0.19.2",
+    "axios-cookiejar-support": "^1.0.0",
+    "dotenv": "^8.2.0",
+    "eslint": "^7.0.0",
+    "ioredis": "^4.17.1",
+    "koa": "^2.11.0",
+    "koa-body": "^4.1.3",
+    "koa-router": "^8.0.8",
+    "qs": "^6.9.4",
+    "tough-cookie": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/tough-cookie": "^4.0.0"
+  }
+}
