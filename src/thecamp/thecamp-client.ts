@@ -19,7 +19,7 @@ export class TheCampClient {
   status: TheCampClientStatus;
   credential: ICredential;
   jar: CookieJar;
-  cookieString: string;
+  cookie: string;
 
   constructor(credential: ICredential) {
     this.jar = new tough.CookieJar();
@@ -34,7 +34,7 @@ export class TheCampClient {
       },
     });
     this.credential = credential;
-    this.cookieString = '';
+    this.cookie = '';
   }
 
   async login() {
@@ -65,9 +65,7 @@ export class TheCampClient {
     }
 
     this.status = '__SIGNED_IN__';
-    // FIXME: 강제로 박아야 Session 유지가 된다.
-    this.client.defaults.headers.cookie = await this.jar.getCookieString(THECAMP_URL);
-
+    this.cookie = await this.jar.getCookieString(THECAMP_URL);
     return true;
   }
 
@@ -80,6 +78,10 @@ export class TheCampClient {
       curPage: '',
       _url: 'https://thecamp.or.kr/consolLetter/viewConsolLetterMain.do',
       keepSearchConditionUrlKey: 'consolLetter',
+    }, {
+      headers: {
+        cookie: this.cookie,
+      },
     });
   }
 
@@ -97,7 +99,7 @@ export class TheCampClient {
       sympathyLetterSubject: `${title} <보내는 이: ${userName}> `,
     }), {
       headers: {
-        cookie: this.cookieString,
+        cookie: this.cookie,
       },
     });
 
@@ -119,7 +121,7 @@ export class TheCampClient {
       headers: {
         'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
         'path': '/consolLetter/insertConsolLetterA.do',
-        cookie: this.cookieString,
+        cookie: this.cookie,
       },
     });
 

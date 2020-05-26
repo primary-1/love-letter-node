@@ -19,16 +19,20 @@ async function main() {
   server.use(koaCors());
   router.use(koaCors())
 
+  server.on('error', (err, ctx) => {
+    console.log(err);
+  });
+
   router.get('/', koaBodyParser(), async (ctx, next) => {
     ctx.body = 'hello!';
   })
 
   router.post('/letters', koaBodyParser(), async (ctx, next) => {
-    thecampService.sendLetter(ctx);
+    return thecampService.sendLetter(ctx);
   });
 
   router.get('/letters', koaBodyParser(), async (ctx, next) => {
-    thecampService.getLetters(ctx);
+    return thecampService.getLetters(ctx);
   });
 }
 
